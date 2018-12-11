@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TaskDetailsPage } from '../pages/task-details/task-details';
+import { NewTaskPage } from '../pages/new-task/new-task';
 import { TaskServiceProvider } from '../providers/task-service/task-service';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    TaskDetailsPage
+    TaskDetailsPage,
+    NewTaskPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { TaskServiceProvider } from '../providers/task-service/task-service';
   entryComponents: [
     MyApp,
     HomePage,
-    TaskDetailsPage
+    TaskDetailsPage,
+    NewTaskPage
   ],
   providers: [
     StatusBar,

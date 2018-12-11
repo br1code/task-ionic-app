@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>New Task</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Task Name</ion-label>
+            <ion-input [(ngModel)]="task.name" required spellcheck="false" autocomplete="off"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Assigned to</ion-label>
+            <ion-input [(ngModel)]="task.assignedTo" required spellcheck="false" autocomplete="off"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Estimated Hours</ion-label>
+            <ion-input [(ngModel)]="task.hours" type="number" min="0" required spellcheck="false" autocomplete="off"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Task Observation</ion-label>
+            <ion-textarea [(ngModel)]="task.observation" rows="5" required spellcheck="false" autocomplete="off"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Task Type</ion-label>
+            <ion-select [(ngModel)]="task.type">
+                <ion-option>Product Backlog Item</ion-option>
+                <ion-option>Bug</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button full (click)="create(task)">Create Task</button>
+
+</ion-content>

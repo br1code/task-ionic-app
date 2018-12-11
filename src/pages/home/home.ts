@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { TaskServiceProvider } from '../../providers/task-service/task-service';
 
 import { TaskDetailsPage } from '../task-details/task-details';
+import { NewTaskPage } from '../new-task/new-task';
 
 @Component({
   selector: 'page-home',
@@ -14,28 +15,39 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    public taskService: TaskServiceProvider
+    public taskService: TaskServiceProvider,
+    public loadingCtrl: LoadingController
     ) {}
 
-    ionViewDidLoad() {
+    ionViewWillEnter() {
       this.taskService.getAll()
       .subscribe(
-        (data) => {
-          this.tasks = data['tasks'];
-        },
-        (error) => {
-          console.log(error);
-        }
+        (data) => this.tasks = data['tasks'],
+        (error) => console.log(error)
       );
     }
 
     taskTapped(event, task) {
-      this.navCtrl.push(TaskDetailsPage, {
-        task: task
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
       });
+
+      loading.present();
+
+      this.taskService.getOne(task['_id'])
+        .subscribe(
+          (data) => {
+            loading.dismiss();
+            this.navCtrl.push(TaskDetailsPage, {task: data['task']});
+          },
+          (error) => {
+            loading.dismiss();
+            console.log(error);
+          }
+        );
     }
 
     addTask() {
-      console.log('Add task');
+      this.navCtrl.push(NewTaskPage);
     }
 }

@@ -1,55 +1,51 @@
 <ion-header>
-        <ion-navbar>
-          <button menuToggle *ngIf="!selectedTask">
-            <ion-icon name="menu"></ion-icon>
-          </button>
-          <ion-title>Task Details</ion-title>
-        </ion-navbar>
-      </ion-header>
+    <ion-navbar>
+        <button menuToggle *ngIf="!selectedTask">
+        <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Task Details</ion-title>
+    </ion-navbar>
+</ion-header>
       
-      <ion-content>
-        <ion-list>
+<ion-content>
 
-            <ion-item>
-                <ion-label floating>Task Name</ion-label>
-                <ion-input value="{{selectedTask.name}}" required spellcheck="false" autocomplete="off"></ion-input>
-            </ion-item>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Task Name</ion-label>
+            <ion-input [(ngModel)]="selectedTask.name" required spellcheck="false" autocomplete="off"></ion-input>
+        </ion-item>
 
-            <ion-item>
-                <ion-label floating>Assigned to</ion-label>
-                <ion-input value="{{selectedTask.assignedTo}}" required spellcheck="false" autocomplete="off"></ion-input>
-            </ion-item> 
+        <ion-item>
+            <ion-label floating>Assigned to</ion-label>
+            <ion-input [(ngModel)]="selectedTask.assignedTo" required spellcheck="false" autocomplete="off"></ion-input>
+        </ion-item> 
 
-            <ion-item>
-                <ion-label floating>Estimated Hours</ion-label>
-                <ion-input type="number" min="0" value="{{selectedTask.hours}}" required spellcheck="false" autocomplete="off"></ion-input>
-            </ion-item>
+        <ion-item>
+            <ion-label floating>Estimated Hours</ion-label>
+            <ion-input type="number" min="0" [(ngModel)]="selectedTask.hours" required spellcheck="false" autocomplete="off"></ion-input>
+        </ion-item>
 
-            <ion-item>
-                <ion-label floating>Task Date</ion-label>
-                <ion-input value="{{selectedTask.date}}" readonly required spellcheck="false" autocomplete="off"></ion-input>
-            </ion-item> 
+        <ion-item>
+            <ion-label floating>Task Date</ion-label>
+            <ion-input [(ngModel)]="selectedTask.date" readonly required spellcheck="false" autocomplete="off"></ion-input>
+        </ion-item> 
 
-            <ion-item>
-                <ion-label floating>Task Observation</ion-label>
-                <ion-textarea value="{{selectedTask.observation}}" rows="5" required spellcheck="false" autocomplete="off"></ion-textarea>
-            </ion-item>
+        <ion-item>
+            <ion-label floating>Task Observation</ion-label>
+            <ion-textarea [(ngModel)]="selectedTask.observation" rows="5" required spellcheck="false" autocomplete="off"></ion-textarea>
+        </ion-item>
 
-            <ion-item>
-                <ion-label>Task Type</ion-label>
-                <ion-select>
-                    <ion-option>Product Backlog Item</ion-option>
-                    <ion-option>Bug</ion-option>
-                </ion-select>
-            </ion-item>
-        </ion-list>
+        <ion-item>
+            <ion-label floating>Task Type</ion-label>
+            <ion-select [(ngModel)]="selectedTask.type">
+                <ion-option value="Product Backlog Item">Product Backlog Item</ion-option>
+                <ion-option value="Bug">Bug</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
 
-        <button ion-button full>
-            Save Changes
-        </button>
+    <button ion-button full (click)="update(selectedTask)">Save Changes</button>
 
-        <button ion-button color="danger" full>
-            Delete Task
-        </button>
+    <button ion-button color="danger" full>Delete Task</button>
 
-      </ion-content>
+</ion-content>
