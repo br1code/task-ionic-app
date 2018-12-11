@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <ion-icon name="logo-buffer"></ion-icon>
+      Tasks
+      <ion-icon style="float: right;" name="add-circle" (click)="addTask()"></ion-icon>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let task of tasks" (click)="taskTapped($event, task)">
+    <ion-card-header><b>{{ task.name }}</b></ion-card-header>
+    <ion-card-content>
+      <small>{{ task.type }}</small>
+      <p style="float:right;">{{ task.assignedTo }}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
